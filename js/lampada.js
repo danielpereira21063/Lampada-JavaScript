@@ -1,49 +1,44 @@
 const img = new Image();
 const div = document.querySelector('div#container-lamp');
 const button = document.querySelector('button#turn');
-const buttons = {
-    txt: {
-        on: 'Ligar',
-        off: 'Desligar',
-        restart: 'Reiniciar'
-    }
-}
-const lamps = {
-    acesa: false,
-    intacta: true, // INFORMACAO SE A LAMPADA ESTÁ QUEBRADA OU NAO
-    off: './img/lampada-apagada.jpg',
-    on: './img/lampada-acesa.jpg',
-    broken: './img/lampada-quebrada.jpg',
-    add: function(src) {
-        img.src = src;
-        div.appendChild(img);
+
+const lamp = {
+    quebrada: false,
+    src: {
+        acesa: './img/lampada-acesa.jpg',
+        apagada: './img/lampada-apagada.jpg',
+        quebrada: './img/lampada-quebrada.jpg'
     },
-    turn: function() {
-        if(lamps.intacta) {
-            if(!lamps.acesa) {
-                button.innerHTML = buttons.txt.on;
-                lamps.add(lamps.off);
-                lamps.acesa = true;
-            } else if(lamps.acesa) {
-                button.innerHTML = buttons.txt.off;
-                lamps.add(lamps.on);
-                lamps.acesa = false;
-            }
+    acender: function() {
+        if(!lamp.quebrada) {
+            img.src = lamp.src.acesa;
+            addChild(img);
         }
     },
-    quebrar: function() {
-        lamps.intacta = false;
-        button.innerHTML = buttons.txt.restart;
-        lamps.add(lamps.broken);
-        lamps.acesa = false;
-    }
-};
+    apagar: function() {
 
-button.addEventListener('click', lamps.turn);
-div.addEventListener('dblclick', lamps.quebrar);
-function load() {
-    img.src = lamps.off;
-    div.appendChild(img);
-    lamps.turn();
+    },
+    quebrar: function() {
+
+    }
 }
-load();
+function addChild(img) {
+    div.appendChild(img);
+}
+function alterarNomeBtn() {
+    
+}
+const inicializar = function() {
+    img.src = './img/lampada-apagada.jpg';
+    div.appendChild(img);
+    button.innerHTML = 'Acender';
+    lamp.quebrada = false;
+}
+inicializar();
+button.addEventListener('click', function(){
+    if(button.innerHTML == 'Acender') {
+        lamp.acender();
+    } else if(button.innerHTML == 'Apagar') {
+        lamp.apagar();
+    }
+});
