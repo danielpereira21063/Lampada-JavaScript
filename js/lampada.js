@@ -31,16 +31,16 @@ const lamps = {
             }
         }
     },
-    lampIsBroken: function() {
-        if(lamps.broken) {
-            return true;
-        } else {
-            return false;
-        }
+    quebrar: function() {
+        lamps.intacta = false;
+        button.innerHTML = buttons.txt.restart;
+        lamps.add(lamps.broken);
+        lamps.acesa = false;
     }
 };
 
 button.addEventListener('click', lamps.turn);
+div.addEventListener('dblclick', lamps.quebrar);
 function load() {
     img.src = lamps.off;
     div.appendChild(img);
