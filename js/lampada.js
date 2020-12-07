@@ -9,7 +9,7 @@ const btn = {
 }
 const lamp = {
     altura: 220,
-    largura: 169,
+    largura: 170,
     quebrada: false,
     src: {
         acesa: './img/lampada-acesa.jpg',
@@ -36,9 +36,9 @@ const lamp = {
         if(!lamp.quebrada) {
             lamp.quebrada = true;
             img.src = lamp.src.quebrada;
+            alterarNomeBotao(btn.reiniciar);
             mudarImagem(img);
             mudarLampInfo('A lâmpada foi quebrada');
-            alterarNomeBotao(btn.reiniciar);
         }
     }
 }
@@ -52,15 +52,14 @@ function alterarNomeBotao(newName) {
     button.innerHTML = newName;
 }
 const inicializar = function() {
-    img.src = './img/lampada-apagada.jpg';
     img.height = lamp.altura;
-    img.width - lamp.largura
+    img.width - lamp.largura;
+    lamp.quebrada = false;
+    img.src = './img/lampada-apagada.jpg';
     mudarImagem(img);
     alterarNomeBotao('Acender');
     mudarLampInfo('A lâmpada está apagada');
-    lamp.quebrada = false;
 }
-div.addEventListener('dblclick', lamp.quebrar);
 button.addEventListener('click', function(){
     if(button.innerHTML == btn.acender) {
         lamp.acender();
@@ -72,4 +71,5 @@ button.addEventListener('click', function(){
 });
 div.addEventListener('mouseenter', lamp.acender);
 div.addEventListener('mouseleave', lamp.apagar);
+div.addEventListener('dblclick', lamp.quebrar);
 inicializar();
