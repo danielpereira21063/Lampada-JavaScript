@@ -1,7 +1,7 @@
 const img = new Image();
 const div = document.querySelector('div#container-lamp');
 const button = document.querySelector('button#turn');
-
+const lampInfo = document.querySelector('h1#lamp-info');
 const lamp = {
     quebrada: false,
     src: {
@@ -25,6 +25,7 @@ const lamp = {
     },
     quebrar: function() {
         if(!lamp.quebrada) {
+            lamp.quebrada = true;
             img.src = lamp.src.quebrada;
             mudarImagem(img);
             alterarNomeBotao('Reiniciar');
@@ -40,9 +41,10 @@ function alterarNomeBotao(newName) {
 const inicializar = function() {
     lamp.quebrada = false;
     img.src = './img/lampada-apagada.jpg';
-    button.innerHTML = 'Acender';
+    alterarNomeBotao('Acender');
     mudarImagem(img);
 }
+div.addEventListener('dblclick', lamp.quebrar);
 button.addEventListener('click', function(){
     if(button.innerHTML == 'Acender') {
         lamp.acender();
@@ -52,5 +54,6 @@ button.addEventListener('click', function(){
         inicializar();
     }
 });
+div.addEventListener('mouseenter', lamp.acender);
+div.addEventListener('mouseleave', lamp.apagar);
 inicializar();
-div.addEventListener('dblclick', lamp.quebrar);
