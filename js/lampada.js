@@ -30,7 +30,7 @@ const lamp = {
             lamp.quebrada = true;
             img.src = lamp.src.quebrada;
             mudarImagem(img);
-            mudarLampInfo('A lâmpada foi apagada');
+            mudarLampInfo('A lâmpada foi quebrada');
             alterarNomeBotao('Reiniciar');
         }
     }
