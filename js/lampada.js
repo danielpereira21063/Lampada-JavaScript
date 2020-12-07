@@ -12,33 +12,45 @@ const lamp = {
     acender: function() {
         if(!lamp.quebrada) {
             img.src = lamp.src.acesa;
-            addChild(img);
+            mudarImagem(img);
+            alterarNomeBotao('Apagar');
         }
     },
     apagar: function() {
-
+        if(!lamp.quebrada) {
+            img.src = lamp.src.apagada;
+            mudarImagem(img);
+            alterarNomeBotao('Acender');
+        }
     },
     quebrar: function() {
-
+        if(!lamp.quebrada) {
+            img.src = lamp.src.quebrada;
+            mudarImagem(img);
+            alterarNomeBotao('Reiniciar');
+        }
     }
 }
-function addChild(img) {
+function mudarImagem(img) {
     div.appendChild(img);
 }
-function alterarNomeBtn() {
-    
+function alterarNomeBotao(newName) {
+    button.innerHTML = newName;
 }
 const inicializar = function() {
-    img.src = './img/lampada-apagada.jpg';
-    div.appendChild(img);
-    button.innerHTML = 'Acender';
     lamp.quebrada = false;
+    img.src = './img/lampada-apagada.jpg';
+    button.innerHTML = 'Acender';
+    mudarImagem(img);
 }
-inicializar();
 button.addEventListener('click', function(){
     if(button.innerHTML == 'Acender') {
         lamp.acender();
     } else if(button.innerHTML == 'Apagar') {
         lamp.apagar();
+    } else if(button.innerHTML == 'Reiniciar') {
+        inicializar();
     }
 });
+inicializar();
+div.addEventListener('dblclick', lamp.quebrar);
