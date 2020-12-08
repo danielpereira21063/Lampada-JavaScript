@@ -2,14 +2,12 @@ const img = new Image();
 const div = document.querySelector('div#container-lamp');
 const button = document.querySelector('button#turn');
 const lampInfo = document.querySelector('h1#lamp-info');
-const btn = {
+const btnAcoes = {
     acender: 'Acender',
     apagar: 'Apagar',
     reiniciar: 'Reiniciar'
 }
 const lamp = {
-    altura: 220,
-    largura: 170,
     quebrada: false,
     src: {
         acesa: './img/lampada-acesa.jpg',
@@ -19,16 +17,16 @@ const lamp = {
     acender: function() {
         if(!lamp.quebrada) {
             img.src = lamp.src.acesa;
+            alterarNomeBotao(btnAcoes.apagar);
             mudarImagem(img);
             mudarLampInfo('A lâmpada foi acesa');
-            alterarNomeBotao(btn.apagar);
         }
     },
     apagar: function() {
         if(!lamp.quebrada) {
             img.src = lamp.src.apagada;
+            alterarNomeBotao(btnAcoes.acender);
             mudarImagem(img);
-            alterarNomeBotao(btn.acender);
             mudarLampInfo('A lâmpada foi apagada');
         }
     },
@@ -36,7 +34,7 @@ const lamp = {
         if(!lamp.quebrada) {
             lamp.quebrada = true;
             img.src = lamp.src.quebrada;
-            alterarNomeBotao(btn.reiniciar);
+            alterarNomeBotao(btnAcoes.reiniciar);
             mudarImagem(img);
             mudarLampInfo('A lâmpada foi quebrada');
         }
@@ -52,8 +50,6 @@ function alterarNomeBotao(newName) {
     button.innerHTML = newName;
 }
 const inicializar = function() {
-    img.height = lamp.altura;
-    img.width - lamp.largura;
     lamp.quebrada = false;
     img.src = './img/lampada-apagada.jpg';
     mudarImagem(img);
@@ -61,11 +57,11 @@ const inicializar = function() {
     mudarLampInfo('A lâmpada está apagada');
 }
 button.addEventListener('click', function(){
-    if(button.innerHTML == btn.acender) {
+    if(button.innerHTML == btnAcoes.acender) {
         lamp.acender();
-    } else if(button.innerHTML == btn.apagar) {
+    } else if(button.innerHTML == btnAcoes.apagar) {
         lamp.apagar();
-    } else if(button.innerHTML == btn.reiniciar) {
+    } else if(button.innerHTML == btnAcoes.reiniciar) {
         inicializar();
     }
 });

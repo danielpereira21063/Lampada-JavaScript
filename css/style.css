@@ -24,3 +24,11 @@ div#container-lamp {
     width: 170px;
     height: 220px;
 }
+p#txt-help {
+    margin-top: 10px;
+    font-size: 10pt;
+    text-align: center;
+}
+div.container {
+    align-items: center;
+}
