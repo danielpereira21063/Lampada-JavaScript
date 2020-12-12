@@ -2,6 +2,7 @@ const img = new Image();
 const div = document.querySelector('div#container-lamp');
 const button = document.querySelector('button#turn');
 const lampInfo = document.querySelector('h1#lamp-info');
+const pHelp = document.getElementById('txt-help');
 const btnAcoes = {
     acender: 'Acender',
     apagar: 'Apagar',
@@ -37,6 +38,7 @@ const lamp = {
             alterarNomeBotao(btnAcoes.reiniciar);
             mudarImagem(img);
             mudarLampInfo('A lâmpada foi quebrada');
+            pHelp.innerHTML = '';
         }
     }
 }
@@ -55,6 +57,7 @@ const inicializar = function() {
     mudarImagem(img);
     alterarNomeBotao('Acender');
     mudarLampInfo('A lâmpada está apagada');
+    pHelp.innerHTML = 'Dê dois cliques na lâmpada para quebrá-la';
 }
 button.addEventListener('click', function(){
     if(button.innerHTML == btnAcoes.acender) {
